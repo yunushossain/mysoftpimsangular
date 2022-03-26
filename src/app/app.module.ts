@@ -9,7 +9,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FamilyMembersComponent } from './components/family-members/family-members.component';
+
+import { PatientlistComponent } from './components/patientlist/patientlist.component';
+import { PatientFamilyMemberComponent } from './components/patient-family-member/patient-family-member.component';
 
 
 
@@ -17,12 +19,13 @@ import { FamilyMembersComponent } from './components/family-members/family-membe
   declarations: [
     AppComponent,
     PatientComponent,
-    FamilyMembersComponent,
-   
+    PatientlistComponent,
+    PatientFamilyMemberComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,    
+    AppRoutingModule,
     CommonModule,
     HttpClientModule,
     FormsModule,
@@ -30,7 +33,7 @@ import { FamilyMembersComponent } from './components/family-members/family-membe
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
 
-  
+
   ],
   providers: [],
   bootstrap: [AppComponent]

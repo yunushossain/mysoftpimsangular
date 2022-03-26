@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 
 import { PatientlistComponent } from './components/patientlist/patientlist.component';
 import { PatientFamilyMemberComponentt } from './components/patient-family-member/patient-family-member.component';
+import { FamilyMemberListComponent } from './components/family-member-list/family-member-list.component';
 
 
 
@@ -21,6 +22,7 @@ import { PatientFamilyMemberComponentt } from './components/patient-family-membe
     PatientComponent,
     PatientlistComponent,
     PatientFamilyMemberComponentt,
+    FamilyMemberListComponent,
 
   ],
   imports: [

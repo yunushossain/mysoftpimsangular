@@ -30,6 +30,7 @@ export class PatientComponent implements OnInit {
 
       }
     )
+   
   }
 
   get f() {
@@ -40,7 +41,7 @@ export class PatientComponent implements OnInit {
   isSave: boolean = true;
 
   ngOnInit(): void {
-
+    this.savePatient()
 
   }
 
@@ -55,16 +56,14 @@ export class PatientComponent implements OnInit {
 
   savePatient() {
     console.log(this.formGroup.value);
-
-    this.submitted = true;
-       
-    const formData: FormData = new FormData();
-
     
+    this.submitted = true;       
+    const formData: FormData = new FormData();    
     formData.append('patientName',this.formGroup.get('patientName')?.value);
     formData.append('gender',this.formGroup.get('gender')?.value);
     formData.append('age',this.formGroup.get('age')?.value);
-    formData.append('dob', new Date(this.formGroup.get('dob')?.value).toDateString());
+     formData.append('dob', new Date(this.formGroup.get('dob')?.value.formate("dd-MM-yyyy")).toDateString());
+   
     formData.append('phonNo',this.formGroup.get('phonNo')?.value);
     formData.append('email',this.formGroup.get('email')?.value);
     formData.append('address',this.formGroup.get('address')?.value);
@@ -77,11 +76,11 @@ export class PatientComponent implements OnInit {
         console.log(data);
         this.toastr.success("save successfull");
       },err => {
-        console.log("error");
+        this.toastr.success("save Failed");
       }
       )
-    //this.router.navigate(["/admin/show"]);
-
   }
+
+
 }
 

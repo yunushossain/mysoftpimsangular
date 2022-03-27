@@ -26,7 +26,7 @@ export class PatientlistComponent implements OnInit {
       "Content-Type": "application/json"
     };
     this.http.get('http://localhost:8084/getAllPatient', { headers: header }).subscribe((res) => {
-    
+      //console.log(res);
       this.getPatient = res;
       console.log(this.getPatient);
     }, err => {
@@ -36,7 +36,7 @@ export class PatientlistComponent implements OnInit {
 
 
 
-  editEmployee(patient: any) {
+  edit(patient: any) {
     this.patient.id = patient.id;
     this.patient.patientName = patient.patientName;
     this.patient.gender = patient.gender;
@@ -49,8 +49,8 @@ export class PatientlistComponent implements OnInit {
     this.router.navigate(['/patient'], { state: { patient: patient, isSave: false } })
   }
 
-  deletePatient(patient: any) {
-    if (confirm("Are you sure to delete")) {     
+  delete(patient: any) {
+    if (confirm(" Confirm delete")) {     
       const headers = { 'content-Type': 'application/json' };
       this.http.get("http://localhost:8084/deletePatient/" + patient.id, { headers: headers })
         .subscribe(data => {

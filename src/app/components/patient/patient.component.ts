@@ -41,7 +41,11 @@ export class PatientComponent implements OnInit {
   isSave: boolean = true;
 
   ngOnInit(): void {
-    this.savePatient()
+    if (history.state.isSave != undefined) {
+      this.patient = history.state.pat
+      this.isSave = history.state.isSave
+      console.log(history.state.pat);
+    }
 
   }
 
@@ -62,7 +66,10 @@ export class PatientComponent implements OnInit {
     formData.append('patientName', this.formGroup.get('patientName')?.value);
     formData.append('gender', this.formGroup.get('gender')?.value);
     formData.append('age', this.formGroup.get('age')?.value);
+    // formData.append('dob', new Date(this.formGroup.get('dob')?.value.formate("dd-MM-yyyy")).toDateString());
     formData.append('dob', new Date(this.formGroup.get('dob')?.value).toUTCString());
+
+
     formData.append('phonNo', this.formGroup.get('phonNo')?.value);
     formData.append('email', this.formGroup.get('email')?.value);
     formData.append('address', this.formGroup.get('address')?.value);
@@ -79,6 +86,35 @@ export class PatientComponent implements OnInit {
       }
       )
   }
+
+
+  updatePatient() {
+    const formData: FormData = new FormData();
+    formData.append('patientName', this.formGroup.get('patientName')?.value);
+    formData.append('gender', this.formGroup.get('gender')?.value);
+    formData.append('age', this.formGroup.get('age')?.value);   
+    formData.append('dob', new Date(this.formGroup.get('dob')?.value).toUTCString());
+
+    formData.append('phonNo', this.formGroup.get('phonNo')?.value);
+    formData.append('email', this.formGroup.get('email')?.value);
+    formData.append('address', this.formGroup.get('address')?.value);
+    formData.append('file', this.fileToUpload, this.fileToUpload?.name);
+    console.log(formData);
+
+    const headers = { 'content-Type': 'application/json' };
+    this.http.post<any>("http://localhost:8084/patientAdd", formData)
+      .subscribe(data => {
+        console.log(data);
+        this.toastr.success("save successfull");
+      }, err => {
+        this.toastr.success("save Failed");
+      }
+      )
+  }
+
+
+
+
 
 
 }
